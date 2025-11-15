@@ -11,10 +11,8 @@
             text-align: center;
             padding: 20px;
             background-color: white; /* White background */
-            background-image: url('https://www.transparenttextures.com/patterns/asfalt-light.png'), url('https://img.icons8.com/ios/452/cheese.png');
-            background-repeat: repeat, repeat;
-            background-position: center center, bottom right; /* Cheese images will appear subtly */
-            background-size: 50px, 150px; /* Scale the cheese icons to be smaller and subtle */
+            position: relative;
+            overflow: hidden; /* Prevent the cheese images from overflowing */
         }
 
         h1 {
@@ -53,124 +51,4 @@
 
         /* Button Hover Effect */
         button:hover {
-            background-color: #f39c12;
-            color: white;
-        }
-
-        input:focus, button:focus {
-            outline: none;
-            border-color: #f1c40f;
-        }
-    </style>
-</head>
-<body>
-    <h1>Cheese Rind Checker</h1>
-    <p>Enter the name of the cheese to find out if the rind is edible!</p>
-    <input type="text" id="cheeseName" placeholder="e.g., Brie">
-    <button onclick="checkRind()">Check</button>
-
-    <div id="result" class="result"></div>
-
-    <script>
-        const cheeseRinds = {
-            "brie": "Edible",
-            "camembert": "Edible",
-            "cheddar": "Cut off",
-            "gorgonzola": "Cut off",
-            "parmesan": "Cut off",
-            "gruyere": "Cut off",
-            "gouda": "Edible",
-            "feta": "Cut off",
-            "manchego": "Edible",
-            "blue cheese": "Cut off",
-            "roquefort": "Cut off",
-            "pecorino": "Cut off",
-            "munster": "Edible",
-            "edam": "Edible",
-            "swiss": "Edible",
-            "ricotta": "Cut off",
-            "mozzarella": "Cut off",
-            "appenzeller": "Edible",
-            "comte": "Edible",
-            "briere": "Edible",
-            "cambozola": "Cut off",
-            "fontina": "Edible",
-            "stilton": "Cut off",
-            "grana padano": "Cut off",
-            "roquefort": "Cut off",
-            "bleu d'auvergne": "Cut off",
-            "taleggio": "Edible",
-            "manchego": "Edible",
-            "cotija": "Cut off",
-            "chevre": "Edible",
-            "saint-nectaire": "Edible",
-            "boursin": "Edible",
-            "valençay": "Edible",
-            "reblochon": "Edible",
-            "saint-marcellin": "Edible",
-            "romano": "Cut off",
-            "gruyere": "Cut off",
-            "neufchatel": "Edible",
-            "cottage cheese": "Cut off",
-            "babybel": "Edible",
-            "brie de meaux": "Edible",
-            "beaufort": "Edible",
-            "leerdammer": "Edible",
-            "jarlsberg": "Edible",
-            "limburger": "Cut off",
-            "munster": "Edible",
-            "puma": "Cut off",
-            "provolone": "Edible",
-            "colby": "Edible",
-            "mascarpone": "Cut off",
-            "ricotta salata": "Cut off",
-            "bocconcini": "Cut off",
-            "havarti": "Edible",
-            "fontina": "Edible",
-            "pecorino romano": "Cut off",
-            "asagio": "Edible",
-            "quark": "Cut off",
-            "cheddar jack": "Cut off",
-            "colby jack": "Cut off",
-            "dubliner": "Edible",
-            "cotija": "Cut off",
-            "emmental": "Edible",
-            "grana padano": "Cut off",
-            "parmesan reggiano": "Cut off",
-            "sardo": "Edible",
-            "jack": "Cut off",
-            "toma": "Cut off",
-            "gruyere de savoie": "Cut off",
-            "beaufort": "Edible",
-            "scamorza": "Edible",
-            "taleggio": "Edible",
-            "serrano": "Cut off",
-            "zamorano": "Edible",
-            "ossau-iraty": "Edible",
-            "cantal": "Cut off",
-            "dry jack": "Edible",
-            "asiago": "Edible",
-            "caciocavallo": "Cut off",
-            "leicester": "Cut off",
-            "swiss cheese": "Edible",
-            "longhorn": "Cut off",
-            "beemster": "Edible",
-            "mimolette": "Edible",
-            "castelmagno": "Edible",
-            "caprice des dieux": "Edible",
-            "gruyere de comte": "Edible",
-            "suisse": "Edible",
-            "cantabria": "Edible",
-            "bleu des causses": "Cut off",
-            "roquefort de cavernes": "Cut off",
-            "camembert de normandie": "Edible",
-            "pont-l'eveque": "Edible",
-            "igp": "Edible",
-            "sainte-maure de touraine": "Edible",
-            "valençay": "Edible",
-            "morbier": "Edible",
-            "neufchatel": "Edible",
-            "galbani": "Edible",
-            "sicilian ricotta": "Cut off",
-            "amish farmer's cheese": "Cut off",
-            "cordoba": "Cu
+            background-color: #f
