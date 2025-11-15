@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cheese Rind Checker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cheese Rind Checker</h1>
+    <p>Enter the name of the cheese to find out if the rind is edible!</p>
+    <input type="text" id="cheeseName" placeholder="e.g., Brie">
+    <button onclick="checkRind()">Check</button>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        const cheeseRinds = {
+            "Brie": "Edible",
+            "Camembert": "Edible",
+            "Cheddar": "Cut off",
+            "Gorgonzola": "Cut off",
+            "Parmesan": "Cut off",
+            "Gruyere": "Cut off"
+        };
+
+        function checkRind() {
+            const cheese = document.getElementById("cheeseName").value.trim();
+            const resultDiv = document.getElementById("result");
+
+            if (cheese === "") {
+                resultDiv.textContent = "Please enter a cheese name.";
+                return;
+            }
+
+            const rindStatus = cheeseRinds[cheese.toLowerCase()] || "I don't know about this cheese!";
+            resultDiv.textContent = `${cheese}: ${rindStatus}`;
+        }
+    </script>
+</body>
+</html>
