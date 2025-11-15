@@ -10,8 +10,10 @@
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 20px;
-            background-color: white; /* White background */
+            background-color: #f9f9c5; /* Light light yellow background */
             position: relative;
+            margin: 0;
+            height: 100vh; /* Ensure the body takes up the full height */
             overflow: hidden; /* Prevent the cheese images from overflowing */
         }
 
@@ -19,6 +21,7 @@
             color: #f1c40f; /* Dark cheesy yellow */
             font-size: 36px;
             font-weight: bold;
+            margin-top: 50px; /* Add space above the title */
         }
 
         input, button {
@@ -51,4 +54,188 @@
 
         /* Button Hover Effect */
         button:hover {
-            background-color: #f
+            background-color: #f39c12;
+            color: white;
+        }
+
+        input:focus, button:focus {
+            outline: none;
+            border-color: #f1c40f;
+        }
+
+        /* Light Grey Cheese Images */
+        .cheese-img {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            opacity: 0.3; /* Light grey effect */
+            filter: grayscale(100%); /* Make it grey */
+            pointer-events: none; /* Prevent them from interfering with other interactions */
+        }
+
+        /* Style adjustments for page responsiveness */
+        @media (max-width: 768px) {
+            .cheese-img {
+                width: 30px;
+                height: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Cheese Rind Checker</h1>
+    <p>Enter the name of the cheese to find out if the rind is edible!</p>
+    <input type="text" id="cheeseName" placeholder="e.g., Brie">
+    <button onclick="checkRind()">Check</button>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        // Array of cheese images to use as backgrounds (use the same or different images)
+        const cheeseImages = [
+            'https://img.icons8.com/ios/452/cheese.png',
+            'https://img.icons8.com/ios/452/cheese.png' // You can add more cheese images for variety
+        ];
+
+        // Function to create and randomize cheese images on the page
+        function createCheeseImages() {
+            console.log("Creating Cheese Images...");
+
+            for (let i = 0; i < 20; i++) { // Adjust the number of images
+                const cheeseImage = document.createElement('img');
+                cheeseImage.src = cheeseImages[Math.floor(Math.random() * cheeseImages.length)];
+                cheeseImage.classList.add('cheese-img');
+
+                // Random position (top, left) within the page
+                const randomTop = Math.random() * 80;  // Ensure it stays within the viewport
+                const randomLeft = Math.random() * 80; // Ensure it stays within the viewport
+
+                cheeseImage.style.top = `${randomTop}vh`;  // Randomize the vertical position
+                cheeseImage.style.left = `${randomLeft}vw`; // Randomize the horizontal position
+
+                // Random rotation
+                cheeseImage.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+                // Append the image to the body
+                document.body.appendChild(cheeseImage);
+            }
+        }
+
+        // Call the function to create the cheese images when the page loads
+        window.onload = function() {
+            createCheeseImages();
+        };
+
+        // Cheese Rind Data (this part remains the same)
+        const cheeseRinds = {
+            "brie": "Edible",
+            "camembert": "Edible",
+            "cheddar": "Cut off",
+            "gorgonzola": "Cut off",
+            "parmesan": "Cut off",
+            "gruyere": "Cut off",
+            "gouda": "Edible",
+            "feta": "Cut off",
+            "manchego": "Edible",
+            "blue cheese": "Cut off",
+            "roquefort": "Cut off",
+            "pecorino": "Cut off",
+            "munster": "Edible",
+            "edam": "Edible",
+            "swiss": "Edible",
+            "ricotta": "Cut off",
+            "mozzarella": "Cut off",
+            "appenzeller": "Edible",
+            "comte": "Edible",
+            "briere": "Edible",
+            "cambozola": "Cut off",
+            "fontina": "Edible",
+            "stilton": "Cut off",
+            "grana padano": "Cut off",
+            "roquefort": "Cut off",
+            "bleu d'auvergne": "Cut off",
+            "taleggio": "Edible",
+            "manchego": "Edible",
+            "cotija": "Cut off",
+            "chevre": "Edible",
+            "saint-nectaire": "Edible",
+            "boursin": "Edible",
+            "valençay": "Edible",
+            "reblochon": "Edible",
+            "saint-marcellin": "Edible",
+            "romano": "Cut off",
+            "gruyere": "Cut off",
+            "neufchatel": "Edible",
+            "cottage cheese": "Cut off",
+            "babybel": "Edible",
+            "brie de meaux": "Edible",
+            "beaufort": "Edible",
+            "leerdammer": "Edible",
+            "jarlsberg": "Edible",
+            "limburger": "Cut off",
+            "munster": "Edible",
+            "puma": "Cut off",
+            "provolone": "Edible",
+            "colby": "Edible",
+            "mascarpone": "Cut off",
+            "ricotta salata": "Cut off",
+            "bocconcini": "Cut off",
+            "havarti": "Edible",
+            "fontina": "Edible",
+            "pecorino romano": "Cut off",
+            "asagio": "Edible",
+            "quark": "Cut off",
+            "cheddar jack": "Cut off",
+            "colby jack": "Cut off",
+            "dubliner": "Edible",
+            "cotija": "Cut off",
+            "emmental": "Edible",
+            "grana padano": "Cut off",
+            "parmesan reggiano": "Cut off",
+            "sardo": "Edible",
+            "jack": "Cut off",
+            "toma": "Cut off",
+            "gruyere de savoie": "Cut off",
+            "beaufort": "Edible",
+            "scamorza": "Edible",
+            "taleggio": "Edible",
+            "serrano": "Cut off",
+            "zamorano": "Edible",
+            "ossau-iraty": "Edible",
+            "cantal": "Cut off",
+            "dry jack": "Edible",
+            "asiago": "Edible",
+            "caciocavallo": "Cut off",
+            "leicester": "Cut off",
+            "swiss cheese": "Edible",
+            "longhorn": "Cut off",
+            "beemster": "Edible",
+            "mimolette": "Edible",
+            "castelmagno": "Edible",
+            "caprice des dieux": "Edible",
+            "gruyere de comte": "Edible",
+        };
+
+        // Check Rind Function
+        function checkRind() {
+            const cheese = document.getElementById('cheeseName').value.toLowerCase();
+            const resultDiv = document.getElementById('result');
+
+            if (cheeseRinds[cheese]) {
+                const result = cheeseRinds[cheese];
+                resultDiv.classList.remove('edible', 'cut-off');
+                if (result === "Edible") {
+                    resultDiv.classList.add('edible');
+                    resultDiv.textContent = `${cheese.charAt(0).toUpperCase() + cheese.slice(1)} rind is edible!`;
+                } else {
+                    resultDiv.classList.add('cut-off');
+                    resultDiv.textContent = `${cheese.charAt(0).toUpperCase() + cheese.slice(1)} rind should be cut off!`;
+                }
+            } else {
+                resultDiv.classList.remove('edible', 'cut-off');
+                resultDiv.textContent = "Sorry, we don't have information on this cheese.";
+            }
+        }
+    </script>
+</body>
+</html>
