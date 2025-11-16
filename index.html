@@ -91,40 +91,69 @@
     <div id="result" class="result"></div>
 
     <script>
-        // Array of cheese images to use as backgrounds (use the same or different images)
+        // Array of cheese images to use as backgrounds
         const cheeseImages = [
             'https://img.icons8.com/ios/452/cheese.png',
             'https://img.icons8.com/ios/452/cheese.png' // You can add more cheese images for variety
         ];
 
+        // To track the positions of all placed cheese images
+        const placedCheesePositions = [];
+
+        // Function to check for overlap with existing cheese images
+        function isOverlapping(x, y, size) {
+            for (let i = 0; i < placedCheesePositions.length; i++) {
+                const pos = placedCheesePositions[i];
+                const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2)); // Pythagorean theorem
+                if (distance < size) {
+                    return true; // Overlapping
+                }
+            }
+            return false; // No overlap
+        }
+
         // Function to create and randomize cheese images on the page
         function createCheeseImages() {
             console.log("Creating Cheese Images...");
 
+            const maxRetries = 100; // Try at most 100 times to find a non-overlapping position
+
             for (let i = 0; i < 20; i++) { // Adjust the number of images
-                const cheeseImage = document.createElement('img');
-                cheeseImage.src = cheeseImages[Math.floor(Math.random() * cheeseImages.length)];
-                cheeseImage.classList.add('cheese-img');
+                let positionFound = false;
+                let x, y;
 
-                // Random position (top, left) within the page
-                const randomTop = Math.random() * 80;  // Ensure it stays within the viewport
-                const randomLeft = Math.random() * 80; // Ensure it stays within the viewport
+                // Try to find a non-overlapping position
+                for (let attempt = 0; attempt < maxRetries; attempt++) {
+                    x = Math.random() * 80;  // Random horizontal position
+                    y = Math.random() * 80;  // Random vertical position
 
-                cheeseImage.style.top = `${randomTop}vh`;  // Randomize the vertical position
-                cheeseImage.style.left = `${randomLeft}vw`; // Randomize the horizontal position
+                    // Check if the position is overlapping with other images
+                    if (!isOverlapping(x, y, 10)) {
+                        positionFound = true;
+                        break;
+                    }
+                }
 
-                // Random rotation
-                cheeseImage.style.transform = `rotate(${Math.random() * 360}deg)`;
+                // If a valid position is found, create the cheese image
+                if (positionFound) {
+                    const cheeseImage = document.createElement('img');
+                    cheeseImage.src = cheeseImages[Math.floor(Math.random() * cheeseImages.length)];
+                    cheeseImage.classList.add('cheese-img');
+                    cheeseImage.style.top = `${y}vh`;
+                    cheeseImage.style.left = `${x}vw`;
+                    cheeseImage.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
 
-                // Append the image to the body
-                document.body.appendChild(cheeseImage);
+                    // Store the position
+                    placedCheesePositions.push({ x, y });
+
+                    // Append the image to the body
+                    document.body.appendChild(cheeseImage);
+                }
             }
         }
 
         // Call the function to create the cheese images when the page loads
-        window.onload = function() {
-            createCheeseImages();
-        };
+        window.onload = createCheeseImages;
 
         // Cheese Rind Data (this part remains the same)
         const cheeseRinds = {
