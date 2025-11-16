@@ -9,52 +9,48 @@
         body {
             font-family: Arial, sans-serif;
             text-align: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
             background-color: #f9f9c5; /* Light light yellow background */
             position: relative;
-            margin: 0;
-            height: 100vh; /* Ensure the body takes up the full height */
-            width: 100%; /* Ensure full width for image positioning */
             overflow: hidden; /* Prevent the cheese images from overflowing */
         }
 
         /* Main Title Styling (Word Art Effect) */
         h1 {
             color: #f1c40f; /* Dark cheesy yellow */
-            font-size: 48px;
+            font-size: 8vw; /* Adjust font size based on screen width */
             font-weight: bold;
-            margin-top: 50px; /* Add space above the title */
+            margin-top: 10vh; /* Top margin of 10% of the viewport height */
             position: relative;
             text-shadow: 4px 4px 10px black; /* Create shadow effect */
         }
 
         /* Subtitle Styling */
         p {
-            font-size: 22px; /* Slightly bigger and easier to read */
+            font-size: 4vw; /* Slightly larger font based on screen width */
             font-weight: bold;
             color: #333;
-            margin-top: 10px;
+            margin-top: 3vh;
+            line-height: 1.5;
         }
 
         /* Input and Button Styling */
         input, button {
-            padding: 10px;
-            font-size: 16px;
-            margin: 10px;
+            padding: 2vh 4vw;
+            font-size: 5vw;
+            margin: 2vh;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
 
         /* Result Styling (No Background, Green/Red Text) */
         .result {
-            margin-top: 20px;
-            font-size: 18px;
+            margin-top: 5vh;
+            font-size: 5vw;
             font-weight: bold;
             text-align: center;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: transparent; /* Remove the background */
-            box-shadow: none; /* Remove any extra shadow */
+            background-color: transparent; /* No background */
         }
 
         .edible {
@@ -79,8 +75,8 @@
         /* Light Grey Cheese Images */
         .cheese-img {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: 8vw;
+            height: 8vw;
             opacity: 0.3; /* Light grey effect */
             filter: grayscale(100%); /* Make it grey */
             pointer-events: none; /* Prevent them from interfering with other interactions */
@@ -89,21 +85,33 @@
         /* Style adjustments for page responsiveness */
         @media (max-width: 768px) {
             h1 {
-                font-size: 32px; /* Smaller font for smaller screens */
+                font-size: 12vw; /* Smaller font for smaller screens */
             }
             p {
-                font-size: 18px; /* Adjust font size for better readability */
+                font-size: 5vw; /* Adjust subtitle font size */
             }
             input, button {
-                font-size: 14px; /* Smaller input and button font */
-            }
-            .cheese-img {
-                width: 30px;
-                height: 30px;
+                font-size: 8vw; /* Adjust font size for input and button */
             }
             .result {
-                font-size: 16px; /* Smaller font size for result text */
-                padding: 8px; /* Reduce padding on mobile */
+                font-size: 10vw; /* Adjust result text size */
+            }
+            .cheese-img {
+                width: 15vw;
+                height: 15vw;
+            }
+        }
+
+        /* Ensure all elements scale appropriately on smaller screens */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 14vw; /* Adjust title size even further for small screens */
+            }
+            p {
+                font-size: 6vw;
+            }
+            .result {
+                font-size: 12vw; /* Adjust result text for tiny screens */
             }
         }
     </style>
