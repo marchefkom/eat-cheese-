@@ -102,11 +102,12 @@
             }
             .input-container {
                 flex-direction: column; /* Stack input and button vertically on smaller screens */
-                width: 80%;
+                width: 100%; /* Take full width on mobile */
+                align-items: center; /* Center-align input and button */
             }
             input, button {
                 font-size: 14px; /* Adjust font size */
-                width: 100%; /* Full width for small screens */
+                width: 80%; /* Allow input/button to take up more width on small screens */
             }
             .result {
                 font-size: 4.5vw; /* Adjust result text size */
