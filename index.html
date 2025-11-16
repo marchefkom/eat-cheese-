@@ -14,16 +14,29 @@
             position: relative;
             margin: 0;
             height: 100vh; /* Ensure the body takes up the full height */
+            width: 100%; /* Ensure full width for image positioning */
             overflow: hidden; /* Prevent the cheese images from overflowing */
         }
 
+        /* Main Title Styling (Word Art Effect) */
         h1 {
             color: #f1c40f; /* Dark cheesy yellow */
-            font-size: 36px;
+            font-size: 48px;
             font-weight: bold;
             margin-top: 50px; /* Add space above the title */
+            position: relative;
+            text-shadow: 4px 4px 10px black; /* Create shadow effect */
         }
 
+        /* Subtitle Styling */
+        p {
+            font-size: 22px; /* Slightly bigger and easier to read */
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        /* Input and Button Styling */
         input, button {
             padding: 10px;
             font-size: 16px;
@@ -117,6 +130,8 @@
             console.log("Creating Cheese Images...");
 
             const maxRetries = 100; // Try at most 100 times to find a non-overlapping position
+            const bodyWidth = document.body.offsetWidth; // Get the body's full width
+            const bodyHeight = document.body.offsetHeight; // Get the body's full height
 
             for (let i = 0; i < 20; i++) { // Adjust the number of images
                 let positionFound = false;
@@ -124,8 +139,8 @@
 
                 // Try to find a non-overlapping position
                 for (let attempt = 0; attempt < maxRetries; attempt++) {
-                    x = Math.random() * 80;  // Random horizontal position
-                    y = Math.random() * 80;  // Random vertical position
+                    x = Math.random() * (bodyWidth - 50);  // Random horizontal position, considering image width
+                    y = Math.random() * (bodyHeight - 50);  // Random vertical position, considering image height
 
                     // Check if the position is overlapping with other images
                     if (!isOverlapping(x, y, 10)) {
@@ -139,8 +154,8 @@
                     const cheeseImage = document.createElement('img');
                     cheeseImage.src = cheeseImages[Math.floor(Math.random() * cheeseImages.length)];
                     cheeseImage.classList.add('cheese-img');
-                    cheeseImage.style.top = `${y}vh`;
-                    cheeseImage.style.left = `${x}vw`;
+                    cheeseImage.style.top = `${y}px`;  // Use px for positioning
+                    cheeseImage.style.left = `${x}px`;  // Use px for positioning
                     cheeseImage.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
 
                     // Store the position
@@ -212,37 +227,7 @@
             "havarti": "Edible",
             "fontina": "Edible",
             "pecorino romano": "Cut off",
-            "asagio": "Edible",
-            "quark": "Cut off",
-            "cheddar jack": "Cut off",
-            "colby jack": "Cut off",
-            "dubliner": "Edible",
-            "cotija": "Cut off",
-            "emmental": "Edible",
-            "grana padano": "Cut off",
-            "parmesan reggiano": "Cut off",
-            "sardo": "Edible",
-            "jack": "Cut off",
-            "toma": "Cut off",
-            "gruyere de savoie": "Cut off",
-            "beaufort": "Edible",
-            "scamorza": "Edible",
-            "taleggio": "Edible",
-            "serrano": "Cut off",
-            "zamorano": "Edible",
-            "ossau-iraty": "Edible",
-            "cantal": "Cut off",
-            "dry jack": "Edible",
-            "asiago": "Edible",
-            "caciocavallo": "Cut off",
-            "leicester": "Cut off",
-            "swiss cheese": "Edible",
-            "longhorn": "Cut off",
-            "beemster": "Edible",
-            "mimolette": "Edible",
-            "castelmagno": "Edible",
-            "caprice des dieux": "Edible",
-            "gruyere de comte": "Edible",
+            "asagio": "Edible"
         };
 
         // Check Rind Function
