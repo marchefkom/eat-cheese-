@@ -13,21 +13,22 @@
             margin: 0;
             background-color: #f9f9c5; /* Light light yellow background */
             position: relative;
+            padding: 10px; /* Add padding to avoid text touching edges */
         }
 
         /* Main Title Styling (Word Art Effect) */
         h1 {
             color: #f1c40f; /* Dark cheesy yellow */
-            font-size: 5vw; /* Adjust font size based on screen width */
+            font-size: 4vw; /* Smaller font size */
             font-weight: bold;
             margin-top: 5vh; /* Top margin of 5% of the viewport height */
             position: relative;
-            text-shadow: 2px 2px 6px black; /* Create shadow effect */
+            text-shadow: 2px 2px 4px black; /* Subtle shadow effect */
         }
 
         /* Subtitle Styling */
         p {
-            font-size: 2.5vw; /* Slightly larger font based on screen width */
+            font-size: 2.5vw; /* Smaller font based on screen width */
             font-weight: bold;
             color: #333;
             margin-top: 2vh;
@@ -36,17 +37,18 @@
 
         /* Input and Button Styling */
         input, button {
-            padding: 1.5vh 3vw;
-            font-size: 3.5vw;
-            margin: 1.5vh;
+            padding: 8px 15px;
+            font-size: 16px; /* Use a smaller fixed font size for input and button */
+            margin: 10px;
             border-radius: 5px;
             border: 1px solid #ccc;
+            width: 60%; /* Reduced the width to 60% for better fitting */
         }
 
         /* Result Styling (No Background, Green/Red Text) */
         .result {
             margin-top: 3vh;
-            font-size: 4vw;
+            font-size: 18px; /* Smaller result text */
             font-weight: bold;
             text-align: center;
             background-color: transparent; /* No background */
@@ -74,29 +76,30 @@
         /* Style adjustments for page responsiveness */
         @media (max-width: 768px) {
             h1 {
-                font-size: 8vw; /* Smaller font for smaller screens */
+                font-size: 6vw; /* Slightly smaller title for smaller screens */
             }
             p {
                 font-size: 4vw; /* Adjust subtitle font size */
             }
             input, button {
-                font-size: 6vw; /* Adjust font size for input and button */
+                font-size: 14px; /* Adjust font size to make it smaller */
+                width: 80%; /* More width for small screens */
             }
             .result {
-                font-size: 6vw; /* Adjust result text size */
+                font-size: 4.5vw; /* Adjust result text size */
             }
         }
 
         /* Ensure all elements scale appropriately on smaller screens */
         @media (max-width: 480px) {
             h1 {
-                font-size: 10vw; /* Adjust title size even further for small screens */
+                font-size: 8vw; /* Adjust title size even smaller for small screens */
             }
             p {
                 font-size: 5vw;
             }
             .result {
-                font-size: 8vw; /* Adjust result text for tiny screens */
+                font-size: 6vw; /* Adjust result text for tiny screens */
             }
         }
     </style>
@@ -190,6 +193,13 @@
                 resultDiv.textContent = "Sorry, we don't have information on this cheese.";
             }
         }
+
+        // Add event listener to input field to trigger on "Enter" key press
+        document.getElementById('cheeseName').addEventListener('keypress', function(event) {
+            if (event.key === 'Enter') {
+                checkRind(); // Trigger the checkRind function when Enter is pressed
+            }
+        });
     </script>
 </body>
 </html>
