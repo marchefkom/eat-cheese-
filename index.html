@@ -13,41 +13,40 @@
             margin: 0;
             background-color: #f9f9c5; /* Light light yellow background */
             position: relative;
-            overflow: hidden; /* Prevent the cheese images from overflowing */
         }
 
         /* Main Title Styling (Word Art Effect) */
         h1 {
             color: #f1c40f; /* Dark cheesy yellow */
-            font-size: 8vw; /* Adjust font size based on screen width */
+            font-size: 5vw; /* Adjust font size based on screen width */
             font-weight: bold;
-            margin-top: 10vh; /* Top margin of 10% of the viewport height */
+            margin-top: 5vh; /* Top margin of 5% of the viewport height */
             position: relative;
-            text-shadow: 4px 4px 10px black; /* Create shadow effect */
+            text-shadow: 2px 2px 6px black; /* Create shadow effect */
         }
 
         /* Subtitle Styling */
         p {
-            font-size: 4vw; /* Slightly larger font based on screen width */
+            font-size: 2.5vw; /* Slightly larger font based on screen width */
             font-weight: bold;
             color: #333;
-            margin-top: 3vh;
+            margin-top: 2vh;
             line-height: 1.5;
         }
 
         /* Input and Button Styling */
         input, button {
-            padding: 2vh 4vw;
-            font-size: 5vw;
-            margin: 2vh;
+            padding: 1.5vh 3vw;
+            font-size: 3.5vw;
+            margin: 1.5vh;
             border-radius: 5px;
             border: 1px solid #ccc;
         }
 
         /* Result Styling (No Background, Green/Red Text) */
         .result {
-            margin-top: 5vh;
-            font-size: 5vw;
+            margin-top: 3vh;
+            font-size: 4vw;
             font-weight: bold;
             text-align: center;
             background-color: transparent; /* No background */
@@ -72,46 +71,32 @@
             border-color: #f1c40f;
         }
 
-        /* Light Grey Cheese Images */
-        .cheese-img {
-            position: absolute;
-            width: 8vw;
-            height: 8vw;
-            opacity: 0.3; /* Light grey effect */
-            filter: grayscale(100%); /* Make it grey */
-            pointer-events: none; /* Prevent them from interfering with other interactions */
-        }
-
         /* Style adjustments for page responsiveness */
         @media (max-width: 768px) {
             h1 {
-                font-size: 12vw; /* Smaller font for smaller screens */
+                font-size: 8vw; /* Smaller font for smaller screens */
             }
             p {
-                font-size: 5vw; /* Adjust subtitle font size */
+                font-size: 4vw; /* Adjust subtitle font size */
             }
             input, button {
-                font-size: 8vw; /* Adjust font size for input and button */
+                font-size: 6vw; /* Adjust font size for input and button */
             }
             .result {
-                font-size: 10vw; /* Adjust result text size */
-            }
-            .cheese-img {
-                width: 15vw;
-                height: 15vw;
+                font-size: 6vw; /* Adjust result text size */
             }
         }
 
         /* Ensure all elements scale appropriately on smaller screens */
         @media (max-width: 480px) {
             h1 {
-                font-size: 14vw; /* Adjust title size even further for small screens */
+                font-size: 10vw; /* Adjust title size even further for small screens */
             }
             p {
-                font-size: 6vw;
+                font-size: 5vw;
             }
             .result {
-                font-size: 12vw; /* Adjust result text for tiny screens */
+                font-size: 8vw; /* Adjust result text for tiny screens */
             }
         }
     </style>
@@ -125,73 +110,7 @@
     <div id="result" class="result"></div>
 
     <script>
-        // Array of cheese images to use as backgrounds
-        const cheeseImages = [
-            'https://img.icons8.com/ios/452/cheese.png',
-            'https://img.icons8.com/ios/452/cheese.png' // You can add more cheese images for variety
-        ];
-
-        // To track the positions of all placed cheese images
-        const placedCheesePositions = [];
-
-        // Function to check for overlap with existing cheese images
-        function isOverlapping(x, y, size) {
-            for (let i = 0; i < placedCheesePositions.length; i++) {
-                const pos = placedCheesePositions[i];
-                const distance = Math.sqrt(Math.pow(x - pos.x, 2) + Math.pow(y - pos.y, 2)); // Pythagorean theorem
-                if (distance < size) {
-                    return true; // Overlapping
-                }
-            }
-            return false; // No overlap
-        }
-
-        // Function to create and randomize cheese images on the page
-        function createCheeseImages() {
-            console.log("Creating Cheese Images...");
-
-            const maxRetries = 100; // Try at most 100 times to find a non-overlapping position
-            const bodyWidth = document.body.offsetWidth; // Get the body's full width
-            const bodyHeight = document.body.offsetHeight; // Get the body's full height
-
-            for (let i = 0; i < 20; i++) { // Adjust the number of images
-                let positionFound = false;
-                let x, y;
-
-                // Try to find a non-overlapping position
-                for (let attempt = 0; attempt < maxRetries; attempt++) {
-                    x = Math.random() * (bodyWidth - 50);  // Random horizontal position, considering image width
-                    y = Math.random() * (bodyHeight - 50);  // Random vertical position, considering image height
-
-                    // Check if the position is overlapping with other images
-                    if (!isOverlapping(x, y, 10)) {
-                        positionFound = true;
-                        break;
-                    }
-                }
-
-                // If a valid position is found, create the cheese image
-                if (positionFound) {
-                    const cheeseImage = document.createElement('img');
-                    cheeseImage.src = cheeseImages[Math.floor(Math.random() * cheeseImages.length)];
-                    cheeseImage.classList.add('cheese-img');
-                    cheeseImage.style.top = `${y}px`;  // Use px for positioning
-                    cheeseImage.style.left = `${x}px`;  // Use px for positioning
-                    cheeseImage.style.transform = `rotate(${Math.random() * 360}deg)`; // Random rotation
-
-                    // Store the position
-                    placedCheesePositions.push({ x, y });
-
-                    // Append the image to the body
-                    document.body.appendChild(cheeseImage);
-                }
-            }
-        }
-
-        // Call the function to create the cheese images when the page loads
-        window.onload = createCheeseImages;
-
-        // Cheese Rind Data (this part remains the same)
+        // Cheese Rind Data
         const cheeseRinds = {
             "brie": "Edible",
             "camembert": "Edible",
