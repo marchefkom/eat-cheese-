@@ -46,12 +46,12 @@
         /* General input and button styles */
         input, button {
             padding: 8px 15px; /* Same padding for both */
-            font-size: 16px; /* Smaller fixed font size for input and button */
+            font-size: 16px; /* Smaller fixed font size */
             margin: 10px; /* Space between input and button */
             border-radius: 5px;
             border: 1px solid #ccc;
-            height: 40px; /* Same height for both */
-            box-sizing: border-box; /* Include padding and border in height/width */
+            height: 40px; /* Same height */
+            box-sizing: border-box;
         }
 
         /* Adjust width for the search field and button */
@@ -60,28 +60,28 @@
         }
 
         button {
-            width: 120px; /* Make the button slightly smaller to match input width */
+            width: 120px;
             cursor: pointer;
         }
 
-        /* Result Styling (No Background, Green/Red Text) */
+        /* Result Styling */
         .result {
             margin-top: 3vh;
-            font-size: 18px; /* Smaller result text */
+            font-size: 18px;
             font-weight: bold;
             text-align: center;
-            background-color: transparent; /* No background */
+            background-color: transparent;
         }
 
         .edible {
-            color: green; /* Green text for edible */
+            color: green;
         }
 
         .cut-off {
-            color: red; /* Red text for cut-off */
+            color: red;
         }
 
-        /* Button Hover Effect */
+        /* Button Hover */
         button:hover {
             background-color: #f39c12;
             color: white;
@@ -92,38 +92,37 @@
             border-color: #f1c40f;
         }
 
-        /* Style adjustments for page responsiveness */
+        /* Mobile Adjustments */
         @media (max-width: 768px) {
             h1 {
-                font-size: 6vw; /* Slightly smaller title for smaller screens */
+                font-size: 6vw;
             }
             p {
-                font-size: 4vw; /* Adjust subtitle font size */
+                font-size: 4vw;
             }
             .input-container {
-                flex-direction: column; /* Stack input and button vertically on smaller screens */
-                width: 100%; /* Take full width on mobile */
-                align-items: center; /* Center-align input and button */
+                flex-direction: column;
+                width: 100%;
+                align-items: center;
             }
             input, button {
-                font-size: 14px; /* Adjust font size */
-                width: 80%; /* Allow input/button to take up more width on small screens */
+                font-size: 14px;
+                width: 80%;
             }
             .result {
-                font-size: 4.5vw; /* Adjust result text size */
+                font-size: 4.5vw;
             }
         }
 
-        /* Ensure all elements scale appropriately on smaller screens */
         @media (max-width: 480px) {
             h1 {
-                font-size: 8vw; /* Adjust title size even smaller for small screens */
+                font-size: 8vw;
             }
             p {
                 font-size: 5vw;
             }
             .result {
-                font-size: 6vw; /* Adjust result text for tiny screens */
+                font-size: 6vw;
             }
         }
     </style>
@@ -167,10 +166,8 @@
             "fontina": "Edible",
             "stilton": "Cut off",
             "grana padano": "Cut off",
-            "roquefort": "Cut off",
             "bleu d'auvergne": "Cut off",
             "taleggio": "Edible",
-            "manchego": "Edible",
             "cotija": "Cut off",
             "chevre": "Edible",
             "saint-nectaire": "Edible",
@@ -179,7 +176,6 @@
             "reblochon": "Edible",
             "saint-marcellin": "Edible",
             "romano": "Cut off",
-            "gruyere": "Cut off",
             "neufchatel": "Edible",
             "cottage cheese": "Cut off",
             "babybel": "Edible",
@@ -188,17 +184,18 @@
             "leerdammer": "Edible",
             "jarlsberg": "Edible",
             "limburger": "Cut off",
-            "munster": "Edible",
-            "puma": "Cut off",
             "provolone": "Edible",
             "colby": "Edible",
             "mascarpone": "Cut off",
             "ricotta salata": "Cut off",
             "bocconcini": "Cut off",
             "havarti": "Edible",
-            "fontina": "Edible",
             "pecorino romano": "Cut off",
-            "asagio": "Edible"
+            "asagio": "Edible",
+
+            /* NEW CHEESES */
+            "oscypek": "Edible",
+            "bleu de brebis": "Cut off"
         };
 
         // Check Rind Function
@@ -222,10 +219,10 @@
             }
         }
 
-        // Add event listener to input field to trigger on "Enter" key press
+        // Enable Enter Key Trigger
         document.getElementById('cheeseName').addEventListener('keypress', function(event) {
             if (event.key === 'Enter') {
-                checkRind(); // Trigger the checkRind function when Enter is pressed
+                checkRind();
             }
         });
     </script>
